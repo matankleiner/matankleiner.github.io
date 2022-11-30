@@ -1,11 +1,8 @@
-## <b>Webpage template</b>
+## <b>SinDDM Webpage</b>
 
-This webpage template was made for a [colorful ECCV paper](http://richzhang.github.io/colorization/). See how the webpage looks [here](https://richzhang.github.io/webpage-template).
+This is the webpage for "SinDDM: A Single Image Denoising Diffusion Model" paper by Vladimir Kulikov, Shahar Yadin, Matan Kleiner, Tomer Micaeli. 
+The official code implementation can be found in the official github repository (coming soon). 
 
-To use this template, clone the repo:
-
-```
-git clone https://github.com/richzhang/webpage-template.git
-```
-
-Copy the contents into a `gh-pages` branch of a GitHub repo. That will automatically make a webpage under address [GITHUB_USERNAME.github.io/REPO_NAME](GITHUB_USERNAME.github.io/REPO_NAME).
+This webpage is inspired by the template that was originally made for a [colorful ECCV paper](http://richzhang.github.io/colorization/). See how the original webpage looks [here](https://richzhang.github.io/webpage-template).
+A lot of features are taken from [bootstrap]("https://getbootstrap.com/").
+All fonts are taken from [font awesome].("https://fontawesome.com/")
