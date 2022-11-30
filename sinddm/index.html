@@ -9,13 +9,938 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  	<link href="style.css" rel="stylesheet" type="text/css">
+	<meta property="og:image" content="Path to my teaser.png"/> 
+	<meta property="og:title" content="SinDDM: A Single Image Denoising Diffusion Model" />
+	<meta property="og:description" content="Paper description." />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script src="https://kit.fontawesome.com/ad96f96272.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-	<p>coming soon...</p>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+	<nav id="navbar_top" class="navbar navbar-expand-lg navbar-dark bg-primary" style="margin-bottom: 15px;">
+		<div class="container">
+				<a class="navbar-brand" href="">SinDDM</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="main_nav">
+			<ul class="navbar-nav ms-auto">
+				<li class="nav-item"><a class="nav-link" href="#style">Text-Guided Style</a></li>
+				<li class="nav-item"><a class="nav-link" href="#content">Text-Guided Content</a></li>
+				<li class="nav-item"><a class="nav-link" href="#ROI"> Image ROI</a></li>
+				<li class="nav-item"><a class="nav-link" href="#paper">Paper</a></li>
+			</ul>
+			</div> 
+		</div> 
+		</nav>
+
+	<button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
+		<i class="fas fa-arrow-up"></i>
+		</button>
+
+	<div class="container-xl">
+
+	<!-- top -->
+	<center>
+		<h1 style="font-size:42px">SinDDM: A Single Image Denoising Diffusion Model</h1>
+		<!-- <span style="font-size:48px">SinDDM: A Single Image Denoising Diffusion Model</span> -->
+		<table align=center width=800px>
+			<tr>
+				<td align=center width=100px>
+					<center>
+						<span style="font-size:24px"><a href="https://www.linkedin.com/in/vova-kulikov-750b2a215" target="_blank" rel="noopener noreferrer">Vladimir Kulikov</a></span>
+					</center>
+				</td>
+				<td align=center width=100px>
+					<center>
+						<span style="font-size:24px"><a href="https://www.linkedin.com/in/shahar-yadin-069725195/" target="_blank" rel="noopener noreferrer">Shahar Yadin</a></span>
+					</center>
+				</td>
+				<td align=center width=100px>
+					<center>
+						<span style="font-size:24px"><a href="https://www.linkedin.com/in/matan-kleiner/" target="_blank" rel="noopener noreferrer">Matan Kleiner</a></span>
+					</center>
+				</td>
+				<td align=center width=100px>
+					<center>
+						<span style="font-size:24px"><a href="https://tomer.net.technion.ac.il/" target="_blank" rel="noopener noreferrer">Tomer Michaeli</a></span>
+					</center>
+				</td>
+			</tr>
+		</table>
+		<table align=center width=800px>
+			<tr>
+				<td align=center width=100px>
+					<center>
+						<p style="font-size:24px">Technion - Israel Institute of Technology</p>
+					</center>
+				</td>
+			</tr>
+		</table>
+		</table>
+			<table align=center width=400px style="margin-bottom:20px !important;">
+				<tr>
+					<td align=center width=120px>
+						<center>
+							<span style="font-size:24px"><a href='resources/sinddm_paper.pdf' target="_blank" rel="noopener noreferrer">[Paper]</a></span>
+						</center>
+					</td>
+					<td align=center width=250px>
+						<center>
+							<span style="font-size:24px">[Code] (Coming Soon)</span><br>
+						</center>
+					</td>
+				</tr>
+			</table>
+		</table>
+	</table>
+	<!-- <table align=center width=250px style="margin-bottom:20px !important;">
+		<tr>
+			<td align=center width=120px>
+				<center>
+					<span style="font-size:24px"><a href='resources/sinddm_paper.pdf' target="_blank" rel="noopener noreferrer">[Paper]</a></span>
+				</center>
+			</td>
+			<td align=center width=120px>
+				<center>
+					<span style="font-size:24px"><a href='' target="_blank" rel="noopener noreferrer">[Code]</a></span><br>
+				</center>
+			</td>
+		</tr>
+	</table> -->
+</table>
+	</center>
+
+
+	<!-- abstract -->
+	<center>
+		<table class="table" width="1">
+			<tbody>
+			<tr>
+				<td width="180" style="padding-right:5px !important; text-align: center; font-size: 22px;"><b>Training Image</b></td>
+				<td width="810" style="text-align: center; font-size: 22px;"><b>Random Samples</b></td>
+			</tr>
+			</tbody>
+		  </table>
+		<table class="table" width="1">
+			<tbody>
+			<tr>
+				<td style="padding-right:5px !important;"><img alt="" id="teaser_part2" class="round" width="180" src="./resources/teaser_part1.png"/></td>
+				<td><img alt="" id="teaser_part2" class="round" width="810" src="./resources/teaser_part2.png"/></td>
+			</tr>
+			</tbody>
+		  </table>
+			<h1>Abstract</h1>
+		</center>
+			<p>
+				Denoising diffusion models (DDMs) have led to staggering performance leaps in image generation, editing and restoration. 
+				However, existing DDMs use very large datasets for training. Here, we introduce a framework for training a DDM on a single image. 
+				Our method, which we coin SinDDM, learns the internal statistics of the training image by using a multi-scale diffusion process.
+				To drive the reverse diffusion process, we use a fully-convolutional light-weight denoiser, which is conditioned on both the noise level and the scale. 
+				This architecture allows generating samples of arbitrary dimensions, in a coarse-to-fine manner. 
+				As we illustrate, SinDDM generates diverse high-quality samples, and is applicable in a wide array of tasks, including style transfer and harmonization.
+				Furthermore, it can be easily guided by external supervision. 
+				Particularly, we demonstrate text-guided generation from a single image using a pre-trained CLIP model. 
+			</p>
+
+
+	<!-- style -->
+	<hr id="style">
+	<!-- text guided style retarget-->
+		<center><h1 style="margin-top: 65px;">Image Generation with Text-Guided Style</h1></center>
+		<p>SinDDM can control the style of the generated samples by providing a text prompt in the form of
+			 "X Style" (e.g. "Van Gogh Style"). This is achieved by applying CLIP guidance only in the finest scale.</p>
+	
+		
+	
+		<center>
+			<table class="table" width="1">
+				<tbody>
+				<tr>
+					<td width="250" style="padding-right:5px !important; text-align: center; font-size: 22px;"><b>Training Image</b></td>
+					<td width="750" style="text-align: center; font-size: 22px;"><b>"Monet Style"</b></td>
+				</tr>
+				</tbody>
+			  </table>
+			<table class="table" width="1">
+				<tbody>
+				<tr>
+					<td style="padding-right:5px !important;"><img id="bagan_content" class="round" width="250" src="./resources/data/sunset.png"/></td>
+					<td><img alt="" id="bagan_content1" class="round" width="375" src="./resources/style/sunset/r_monet1.png"/></td>
+					<td><img alt="" id="bagan_content3" class="round" width="375" src="./resources/style/sunset/r_monet2.png"/></td>
+				</tr>
+				</tbody>
+			  </table>
+			  <table class="table" width="1">
+				<tbody>
+				<tr>
+					<td style="padding-right:5px !important;"><img id="bagan_content" class="round" width="250" src="./resources/data/aurora.png"/></td>
+					<td><img alt="" id="bagan_content1" class="round" width="375" src="./resources/style/aurora/r_monet1.png"/></td>
+					<td><img alt="" id="bagan_content3" class="round" width="375" src="./resources/style/aurora/r_monet2.png"/></td>
+				</tr>
+				</tbody>
+			  </table>
+			  <table class="table" width="1">
+				<tbody>
+				<tr>
+					<td style="padding-right:5px !important;"><img id="bagan_content" class="round" width="250" src="./resources/data/starry_night.png"/></td>
+					<td><img alt="" id="bagan_content1" class="round" width="375" src="./resources/style/starry_night/r_monet1.png"/></td>
+					<td><img alt="" id="bagan_content3" class="round" width="375" src="./resources/style/starry_night/r_monet2.png"/></td>
+				</tr>
+				</tbody>
+			  </table>
+			  <table class="table" width="1">
+				<tbody>
+				<tr>
+					<td width="250" style="padding-right:5px !important; text-align: center; font-size: 22px;"></td>
+					<td width="750" style="text-align: center; font-size: 22px;"><b>"Van Gogh Style"</b></td>
+				</tr>
+				</tbody>
+			  </table>
+			<table class="table" width="1">
+			<tbody>
+			<tr>
+				<td style="padding-right:5px !important;"><img id="bagan_content" class="round" width="250" src="./resources/data/night_sky.png"/></td>
+				<td><img alt="" id="bagan_content1" class="round" width="375" src="./resources/style/night_sky/r_vg1.png"/></td>
+				<td><img alt="" id="bagan_content3" class="round" width="375" src="./resources/style/night_sky/r_vg2.png"/></td>
+			</tr>
+			</tbody>
+			</table>
+			<table class="table" width="1">
+				<tbody>
+				<tr>
+					<td style="padding-right:5px !important;"><img id="bagan_content" class="round" width="250" src="./resources/data/sunset.png"/></td>
+					<td><img alt="" id="bagan_content1" class="round" width="375" src="./resources/style/sunset/r_vg1.png"/></td>
+					<td><img alt="" id="bagan_content3" class="round" width="375" src="./resources/style/sunset/r_vg2.png"/></td>
+				</tr>
+				</tbody>
+			  </table>
+			  <table class="table" width="1">
+				<tbody>
+				<tr>
+					<td style="padding-right:5px !important;"><img id="bagan_content" class="round" width="250" src="./resources/data/aurora.png"/></td>
+					<td><img alt="" id="bagan_content1" class="round" width="375" src="./resources/style/aurora/r_vg1.png"/></td>
+					<td><img alt="" id="bagan_content3" class="round" width="375" src="./resources/style/aurora/r_vg2.png"/></td>
+				</tr>
+				</tbody>
+			  </table>
+		</center>
+
+<!-- dropdown -->
+		<!-- text guided style generation -->
+		<p  style="margin-top: 35px;">
+			 Below are a few more examples, where the samples are in the dimensions of the training image. For each of the images below you can choose a style from the list and see a corresponding generated sample.</p>
+		<center>
+		<div class="row">
+			<div class="column" style="width: 33.33% !important;">
+				<img alt="" id="sunset" class="round" src="./resources/data/sunset.png" width="250" style="padding-right: 5px;"/>
+				<div class="btn-group" id="myDropdown">
+				<button type="button" onclick="document.getElementById('sunset').src='./resources/data/sunset.png'" class="btn btn-info">Style</button>
+				<button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+					<span class="visually-hidden">Toggle Dropdown</span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a class="dropdown-item" onclick="document.getElementById('sunset').src='./resources/style/sunset/vg.png'">Van Gogh</a></li>
+					<li><a class="dropdown-item" onclick="document.getElementById('sunset').src='./resources/style/sunset/vg_sunflowers.png'">Van Gogh Sunflowers</a></li>
+					<li><a class="dropdown-item" onclick="document.getElementById('sunset').src='./resources/style/sunset/monet.png'">Monet</a></li>
+					<li><a class="dropdown-item" onclick="document.getElementById('sunset').src='./resources/style/sunset/turner.png'">Turner</a></li>
+					<li><a class="dropdown-item" onclick="document.getElementById('sunset').src='./resources/style/sunset/picasso.png'">Picasso</a></li>
+					<li><a class="dropdown-item" onclick="document.getElementById('sunset').src='./resources/style/sunset/picasso_blue.png'">Picasso Blue Period</a></li>
+					<li><a class="dropdown-item" onclick="document.getElementById('sunset').src='./resources/style/sunset/rococo.png'">Rococo</a></li>
+					<li><a class="dropdown-item" onclick="document.getElementById('sunset').src='./resources/style/sunset/anime.png'">Anime</a></li>
+					<li><a class="dropdown-item" onclick="document.getElementById('sunset').src='./resources/style/sunset/studio_g.png'">Studio Ghibli</a></li>
+					<li><a class="dropdown-item" onclick="document.getElementById('sunset').src='./resources/style/sunset/greek.png'">Greek Art</a></li>
+					<li><a class="dropdown-item" onclick="document.getElementById('sunset').src='./resources/style/sunset/dh.png'">Damien Hirst</a></li>
+					<li><hr class="dropdown-divider"></li> 
+					<li><a class="dropdown-item" onclick="document.getElementById('sunset').src='./resources/data/sunset.png'">Original</a></li>
+				</ul>
+					</div>
+			</div>
+			<div class="column" style="width: 33.33% !important;">
+				<img alt="" id="mountains_2" class="round" width="250" src="./resources/data/mountains_2.png" style="padding-right: 5px;"/>
+				<div class="btn-group" id="myDropdown">
+					<button type="button" onclick="document.getElementById('mountains_2').src='./resources/data/mountains_2.png'" class="btn btn-info">Style</button>
+					<button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+						<span class="visually-hidden">Toggle Dropdown</span>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" onclick="document.getElementById('mountains_2').src='./resources/style/mountains_2/vg.png'">Van Gogh</a></li>
+						<li><a class="dropdown-item" onclick="document.getElementById('mountains_2').src='./resources/style/mountains_2/cubism.png'">Cubism</a></li>
+						<li><a class="dropdown-item" onclick="document.getElementById('mountains_2').src='./resources/style/mountains_2/anime.png'">Anime</a></li>
+						<li><a class="dropdown-item" onclick="document.getElementById('mountains_2').src='./resources/style/mountains_2/monet.png'">Monet</a></li>
+						<li><a class="dropdown-item" onclick="document.getElementById('mountains_2').src='./resources/style/mountains_2/rococo.png'">Rococo</a></li>
+						<li><a class="dropdown-item" onclick="document.getElementById('mountains_2').src='./resources/style/mountains_2/picasso.png'">Picasso</a></li>
+						<li><a class="dropdown-item" onclick="document.getElementById('mountains_2').src='./resources/style/mountains_2/fk.png'">Fridah Kahlo</a></li>
+						<li><a class="dropdown-item" onclick="document.getElementById('mountains_2').src='./resources/style/mountains_2/jp.png'">Jackson Pollock</a></li>
+						<li><a class="dropdown-item" onclick="document.getElementById('mountains_2').src='./resources/style/mountains_2/popart.png'">Pop Art</a></li>
+						<li><hr class="dropdown-divider"></li> 
+						<li><a class="dropdown-item" onclick="document.getElementById('mountains_2').src='./resources/data/mountains_2.png'">Original</a></li>
+					</ul>
+					  </div>
+				  </div>
+				<div class="column" style="width: 33.33% !important;">
+				<img alt="" id="forest" class="round" width="250" src="./resources/data/forest.png" style="padding-right: 5px;"/>
+				<div class="btn-group" id="myDropdown">
+				<button type="button" onclick="document.getElementById('forest').src='./resources/data/forest.png'" class="btn btn-info">Style</button>
+				<button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+					<span class="visually-hidden">Toggle Dropdown</span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a class="dropdown-item" onclick="document.getElementById('forest').src='./resources/style/forest/vg.png'">Van Gogh</a></li>
+					<li><a class="dropdown-item" onclick="document.getElementById('forest').src='./resources/style/forest/monet.png'">Monet</a></li>
+					<li><a class="dropdown-item" onclick="document.getElementById('forest').src='./resources/style/forest/picasso.png'">Picasso</a></li>
+					<li><a class="dropdown-item" onclick="document.getElementById('forest').src='./resources/style/forest/anime.png'">Anime</a></li>
+					<li><a class="dropdown-item" onclick="document.getElementById('forest').src='./resources/style/forest/pg.png'">Paul Gauguin</a></li>
+					<li><a class="dropdown-item" onclick="document.getElementById('forest').src='./resources/style/forest/jp.png'">Jackson Pollock</a></li>
+					<li><a class="dropdown-item" onclick="document.getElementById('forest').src='./resources/style/forest/greek.png'">Greek Art</a></li>
+					<li><a class="dropdown-item" onclick="document.getElementById('forest').src='./resources/style/forest/ga.png'">Giuseppe Arcimboldo</a></li>
+					<li><a class="dropdown-item" onclick="document.getElementById('forest').src='./resources/style/forest/popart.png'">Pop Art</a></li>
+					<li><a class="dropdown-item" onclick="document.getElementById('forest').src='./resources/style/forest/rococo.png'">Rococo</a></li>
+					<li><hr class="dropdown-divider"></li> 
+					<li><a class="dropdown-item" onclick="document.getElementById('forest').src='./resources/data/forest.png'">Original</a></li>
+				</ul>
+					</div>
+			</div>
+			</div>
+
+		<div class="row">
+			<div class="column" style="width: 33.33% !important;">
+				<img alt="" id="seascape" class="round" width="250" src="./resources/data/seascape.png" style="padding-right: 5px;"/>
+				<div class="btn-group" id="myDropdown">
+					<button type="button" onclick="document.getElementById('seascape').src='./resources/data/seascape.png'" class="btn btn-info">Style</button>
+					<button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+						<span class="visually-hidden">Toggle Dropdown</span>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" onclick="document.getElementById('seascape').src='./resources/style/seascape/vg.png'">Van Gogh</a></li>
+						<li><a class="dropdown-item" onclick="document.getElementById('seascape').src='./resources/style/seascape/vg_sunflowers.png'">Van Gogh Sunflowers</a></li>
+						<li><a class="dropdown-item" onclick="document.getElementById('seascape').src='./resources/style/seascape/cubism.png'">Cubism</a></li>
+						<li><a class="dropdown-item" onclick="document.getElementById('seascape').src='./resources/style/seascape/monet.png'">Monet</a></li>
+						<li><a class="dropdown-item" onclick="document.getElementById('seascape').src='./resources/style/seascape/monet_haystack.png'">Monet Haystack</a></li>
+						<li><a class="dropdown-item" onclick="document.getElementById('seascape').src='./resources/style/seascape/jp.png'">Jackson Pollock</a></li>
+						<li><a class="dropdown-item" onclick="document.getElementById('seascape').src='./resources/style/seascape/fk.png'">Fridah Kahlo</a></li>
+						<li><a class="dropdown-item" onclick="document.getElementById('seascape').src='./resources/style/seascape/anime.png'">Anime</a></li>
+						<li><a class="dropdown-item" onclick="document.getElementById('seascape').src='./resources/style/seascape/picasso.png'">Picasso</a></li>
+						<li><a class="dropdown-item" onclick="document.getElementById('seascape').src='./resources/style/seascape/picasso_blue.png'">Picasso Blue Period</a></li>
+						<li><hr class="dropdown-divider"></li> 
+						<li><a class="dropdown-item" onclick="document.getElementById('seascape').src='./resources/data/seascape.png'">Original</a></li>
+					</ul>
+						</div>
+				</div>
+			<div class="column" style="width: 33.33% !important;">
+				<img alt="" id="night_sky" class="round" width="250" src="./resources/data/night_sky.png" style="padding-right: 5px;"/>
+				<div class="btn-group" id="myDropdown">
+					<button type="button" onclick="document.getElementById('night_sky').src='./resources/data/night_sky.png'" class="btn btn-info">Style</button>
+					<button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+						<span class="visually-hidden">Toggle Dropdown</span>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" onclick="document.getElementById('night_sky').src='./resources/style/night_sky/vg.png'">Van Gogh</a></li>
+						<li><a class="dropdown-item" onclick="document.getElementById('night_sky').src='./resources/style/night_sky/vg_starrynight.png'">Van Gogh Starry Night</a></li>
+						<li><a class="dropdown-item" onclick="document.getElementById('night_sky').src='./resources/style/night_sky/monet.png'">Monet</a></li>
+						<li><a class="dropdown-item" onclick="document.getElementById('night_sky').src='./resources/style/night_sky/picasso.png'">Picasso</a></li>
+						<li><a class="dropdown-item" onclick="document.getElementById('night_sky').src='./resources/style/night_sky/jp.png'">Jackson Pollock</a></li>
+						<li><a class="dropdown-item" onclick="document.getElementById('night_sky').src='./resources/style/night_sky/anime.png'">Anime</a></li>
+						<li><a class="dropdown-item" onclick="document.getElementById('night_sky').src='./resources/style/night_sky/b2f.png'">Back to the Future</a></li>
+						<li><hr class="dropdown-divider"></li> 
+						<li><a class="dropdown-item" onclick="document.getElementById('night_sky').src='./resources/data/night_sky.png'">Original</a></li>
+					</ul>
+						</div>
+				</div>
+			<div class="column" style="width: 33.33% !important;">
+				<img alt="" id="aurora" class="round" width="250" src="./resources/data/aurora.png" style="padding-right: 5px;"/>
+				<div class="btn-group" id="myDropdown">
+				<button type="button" onclick="document.getElementById('aurora').src='./resources/data/aurora.png'" class="btn btn-info">Style</button>
+				<button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+					<span class="visually-hidden">Toggle Dropdown</span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a class="dropdown-item" onclick="document.getElementById('aurora').src='./resources/style/aurora/monet.png'">Monet</a></li>
+					<li><a class="dropdown-item" onclick="document.getElementById('aurora').src='./resources/style/aurora/cubism.png'">Cubism</a></li>
+					<li><a class="dropdown-item" onclick="document.getElementById('aurora').src='./resources/style/aurora/vg.png'">Van Gogh</a></li>
+					<li><a class="dropdown-item" onclick="document.getElementById('aurora').src='./resources/style/aurora/vg_sunflowers.png'">Van Gogh Sunflowers</a></li>
+					<li><a class="dropdown-item" onclick="document.getElementById('aurora').src='./resources/style/aurora/vg_starrynight.png'">Van Gogh Starry Night</a></li>
+					<li><a class="dropdown-item" onclick="document.getElementById('aurora').src='./resources/style/aurora/turner.png'">Turner</a></li>
+					<li><a class="dropdown-item" onclick="document.getElementById('aurora').src='./resources/style/aurora/picasso.png'">Picasso</a></li>
+					<li><a class="dropdown-item" onclick="document.getElementById('aurora').src='./resources/style/aurora/picasso_blue.png'">Picasso Blue Period</a></li>
+					<li><a class="dropdown-item" onclick="document.getElementById('aurora').src='./resources/style/aurora/dh.png'">Damien Hirst</a></li>
+					<li><hr class="dropdown-divider"></li> 
+					<li><a class="dropdown-item" onclick="document.getElementById('aurora').src='./resources/data/aurora.png'">Original</a></li>
+				</ul>
+					</div>
+			</div>
+			</div>
+		</center>
+
+		<br>
+	
+		<!-- text guided style transfer -->
+		<center><h1 style="font-size: 36px;">Text-Guided Style Transfer</h1></center>
+
+		<p>
+			Rather than controlling the style of the random samples generated by our model, we can also use SinDDM to modify the style of the training
+			image itself. 
+			We achieve this by injecting the training image directly to the finest scale so that the modifications imposed by our denoiser and by the CLIP
+			guidance only affect the fine textures. This leads to a style-transfer effect, but where the style is dictated by a text prompt rather than by an example style image.
+			For each of the images below you can choose a style from the list and see the results.
+		</p>
+		<!-- dropdown -->
+		<center>
+			<div class="row">
+				<div class="column" style="width: 33.33% !important;">
+					<img alt="" id="bagan_transfer" class="round" src="./resources/data/bagan.png" width="250" style="padding-right: 5px;"/>
+					<div class="btn-group" id="myDropdown">
+					<button type="button" onclick="document.getElementById('bagan_transfer').src='./resources/data/bagan.png'" class="btn btn-info">Style</button>
+					<button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+						<span class="visually-hidden">Toggle Dropdown</span>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" onclick="document.getElementById('bagan_transfer').src='./resources/style/transfer/bagan/vg.png'">Van Gogh</a></li>
+						<li><a class="dropdown-item" onclick="document.getElementById('bagan_transfer').src='./resources/style/transfer/bagan/picasso.png'">Picasso</a></li>
+						<li><a class="dropdown-item" onclick="document.getElementById('bagan_transfer').src='./resources/style/transfer/bagan/monet.png'">Monet</a></li>
+						<li><a class="dropdown-item" onclick="document.getElementById('bagan_transfer').src='./resources/style/transfer/bagan/cubism.png'">Cubism</a></li>
+						<li><hr class="dropdown-divider"></li>
+						<li><a class="dropdown-item" onclick="document.getElementById('bagan_transfer').src='./resources/data/bagan.png'">Original</a></li>
+					</ul>
+						</div>
+				</div>
+				<div class="column" style="width: 33.33% !important;">
+					<img alt="" id="night_sky_transfer" class="round" width="250" src="./resources/data/night_sky.png" style="padding-right: 5px;"/>
+					<div class="btn-group" id="myDropdown">
+						<button type="button" onclick="document.getElementById('night_sky_transfer').src='./resources/data/night_sky.png'" class="btn btn-info">Style</button>
+						<button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+							<span class="visually-hidden">Toggle Dropdown</span>
+						</button>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" onclick="document.getElementById('night_sky_transfer').src='./resources/style/transfer/night_sky/vg.png'">Van Gogh</a></li>
+							<li><a class="dropdown-item" onclick="document.getElementById('night_sky_transfer').src='./resources/style/transfer/night_sky/picasso.png'">Picasso</a></li>
+							<li><a class="dropdown-item" onclick="document.getElementById('night_sky_transfer').src='./resources/style/transfer/night_sky/monet.png'">Monet</a></li>
+							<li><a class="dropdown-item" onclick="document.getElementById('night_sky_transfer').src='./resources/style/transfer/night_sky/cubism.png'">Cubism</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item" onclick="document.getElementById('night_sky_transfer').src='./resources/data/night_sky.png'">Original</a></li>
+						</ul>
+						  </div>
+					  </div>
+					  <div class="column" style="width: 33.33% !important;">
+						<img alt="" id="islands_transfer" class="round" width="250" src="./resources/data/islands.png" style="padding-right: 5px;"/>
+						<div class="btn-group" id="myDropdown">
+							<button type="button" onclick="document.getElementById('islands_transfer').src='./resources/data/islands.png'" class="btn btn-info">Style</button>
+							<button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+								<span class="visually-hidden">Toggle Dropdown</span>
+							</button>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" onclick="document.getElementById('islands_transfer').src='./resources/style/transfer/islands/vg.png'">Van Gogh</a></li>
+								<li><a class="dropdown-item" onclick="document.getElementById('islands_transfer').src='./resources/style/transfer/islands/picasso.png'">Picasso</a></li>
+								<li><a class="dropdown-item" onclick="document.getElementById('islands_transfer').src='./resources/style/transfer/islands/monet.png'">Monet</a></li>
+								<li><a class="dropdown-item" onclick="document.getElementById('islands_transfer').src='./resources/style/transfer/islands/cubism.png'">Cubism</a></li>
+								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" onclick="document.getElementById('islands_transfer').src='./resources/data/islands.png'">Original</a></li>
+							</ul>
+								</div>
+						</div>
+				</div>
+		</center>
+	
+		<br>
+
+	<!-- content -->
+	<hr id="content">
+
+	<!-- text guided content generation -->
+	<center><h1 style="margin-top: 65px;">Image Generation with Text-Guided Contents</h1></center>
+	<p>Besides style, the user can also control the contents of the generated samples using a text prompt. Here again we use CLIP's external knowledge to guide the image generation process, but as opposed to the style guidance setting, here we employ CLIP also in coarser scales.</p>
+
+	<center>
+
+		<table class="table" width="1">
+			<tbody>
+			<tr>
+				<td width="250" style="padding-right:5px !important; text-align: center; font-size: 22px;"><b>Training Image</b></td>
+				<td width="875" style="text-align: center; font-size: 22px;"><b>"Matterhorn Mountain"</b></td>
+			</tr>
+			</tbody>
+		  </table>
+		<!-- bagan -->
+		<table class="table" width="1">
+			<tbody>
+			<tr>
+				<td style="padding-right:5px !important;"><img id="bagan_content" class="round" width="250" src="./resources/data/bagan.png"/></td>
+				<td><img alt="" id="bagan_content1" class="round" width="375" src="./resources/content/bagan/1.png"/></td>
+				<td><img alt="" id="bagan_content2" class="round" width="125" src="./resources/content/bagan/2.png"/></td>
+				<td><img alt="" id="bagan_content3" class="round" width="375" src="./resources/content/bagan/3.png"/></td>
+			</tr>
+			</tbody>
+		  </table>
+		  <table class="table" width="1">
+			<tbody>
+			<tr>
+				<td width="250" style="padding-right:5px !important; text-align: center; font-size: 22px;"><b></b></td>
+				<td width="875" style="text-align: center; font-size: 22px;"><b>"Van Gogh"</td>
+			</tr>
+			</tbody>
+		  </table>
+		<!-- van gogh -->
+		  <table class="table" width="1">
+			<tbody>
+		</tr>
+		<tr>
+			<td style="padding-right:5px !important;"><img id="starry_night_content" class="round" width="250" src="./resources/data/starry_night.png"/></td>
+			<td><img alt="" id="starry_night_content1" class="round" width="250" src="./resources/content/starry_night/3.png"/></td>
+			<td><img alt="" id="starry_night_content2" class="round" width="375" src="./resources/content/starry_night/2.png"/></td>
+			<td><img alt="" id="starry_night_content3" class="round" width="250" src="./resources/content/starry_night/1.png"/></td>
+		  </tr>
+			</tbody>
+		  </table>
+		  <table class="table" width="1">
+			<tbody>
+			<tr>
+				<td width="250" style="padding-right:5px !important; text-align: center; font-size: 22px;"><b></b></td>
+				<td width="875" style="text-align: center; font-size: 22px;"><b>"a fire in the forest"</td>
+			</tr>
+			</tbody>
+		  </table>
+		<!-- forest -->
+		  <table class="table" width="1">
+			<tbody>
+		<tr>
+			<td style="padding-right:5px !important;"><img id="forest_content" class="round" width="250" src="./resources/data/forest.png"/></td>
+			<td><img alt="" id="forest_content1" class="round" width="250" src="./resources/content/forest/1.png"/></td>
+			<td><img alt="" id="forest_content2" class="round" width="250" src="./resources/content/forest/2.png"/></td>
+			<td><img alt="" id="forest_content3" class="round" width="375" src="./resources/content/forest/3.png"/></td>
+		  </tr>
+			</tbody>
+		  </table>
+		  <table class="table" width="1">
+			<tbody>
+			<tr>
+				<td width="250" style="padding-right:5px !important; text-align: center; font-size: 22px;"><b></b></td>
+				<td width="875" style="text-align: center; font-size: 22px;"><b>"Camelot"</td>
+			</tr>
+			</tbody>
+		  </table>
+		  <!-- castle -->
+		  <table class="table" width="1">
+			<tbody>
+		  <tr>
+			<td style="padding-right:5px !important;"><img id="castle_content" class="round" width="250" src="./resources/data/castle.png"/></td>
+			<td><img alt="" id="castle_content1" class="round" width="250" src="./resources/content/castle/1.png"/></td>
+			<td><img alt="" id="castle_content2" class="round" width="250" src="./resources/content/castle/2.png"/></td>
+			<td><img alt="" id="castle_content3" class="round" width="375" src="./resources/content/castle/3.png"/></td>
+		  </tr>
+			</tbody>
+		  </table>
+		  <table class="table" width="1">
+			<tbody>
+			<tr>
+				<td width="250" style="padding-right:5px !important; text-align: center; font-size: 22px;"><b></b></td>
+				<td width="875" style="text-align: center; font-size: 22px;"><b>"sand castle"</td>
+			</tr>
+			</tbody>
+		  </table>
+		  <!-- sunset -->
+		  <table class="table" width="1">
+			<tbody>
+		  <tr>
+			<td style="padding-right:5px !important;"><img id="sunset_content" class="round" width="250" src="./resources/data/sunset.png"/></td>
+			<td><img alt="" id="sunset_content1" class="round" width="375" src="./resources/content/sunset/1.png"/></td>
+			<td><img alt="" id="sunset_content2" class="round" width="250" src="./resources/content/sunset/2.png"/></td>
+			<td><img alt="" id="sunset_content3" class="round" width="250" src="./resources/content/sunset/3.png"/></td>
+		  </tr>
+			</tbody>
+		  </table>
+		  <table class="table" width="1">
+			<tbody>
+			<tr>
+				<td width="250" style="padding-right:5px !important; text-align: center; font-size: 22px;"><b></b></td>
+				<td width="875" style="text-align: center; font-size: 22px;"><b>"stars constellation in the night sky"</td>
+			</tr>
+			</tbody>
+		  </table>
+		  <!-- night_sky -->
+		  <table class="table" width="1">
+			<tbody>
+		  <tr>
+			<td style="padding-right:5px !important;"><img id="night_sky_content" class="round" width="250" src="./resources/data/night_sky.png"/></td>
+			<td><img alt="" id="night_sky_content1" class="round" width="250" src="./resources/content/night_sky/1.png"/></td>
+			<td><img alt="" id="night_sky_content2" class="round" width="250" src="./resources/content/night_sky/2.png"/></td>
+			<td><img alt="" id="night_sky_content3" class="round" width="375" src="./resources/content/night_sky/3.png"/></td>
+		  </tr>
+			</tbody>
+		  </table>
+		  <table class="table" width="1">
+			<tbody>
+			<tr>
+				<td width="250" style="padding-right:5px !important; text-align: center; font-size: 22px;"><b></b></td>
+				<td width="875" style="text-align: center; font-size: 22px;"><b>"mesoamerican pyramids"</td>
+			</tr>
+			</tbody>
+		  </table>
+		  <!-- pyramids -->
+		  <table class="table" width="1">
+			<tbody>
+		  <tr>
+			<td style="padding-right:5px !important;"><img id="pyramids_content" class="round" width="250" src="./resources/data/pyramids.png"/></td>
+			<td><img alt="" id="pyramids_content1" class="round" width="250" src="./resources/content/pyramids/1.png"/></td>
+			<td><img alt="" id="pyramids_content2" class="round" width="250" src="./resources/content/pyramids/2.png"/></td>
+			<td><img alt="" id="pyramids_content3" class="round" width="375" src="./resources/content/pyramids/3.png"/></td>
+		  </tr>
+			</tbody>
+		  </table>
+		  <table class="table" width="1">
+			<tbody>
+			<tr>
+				<td width="250" style="padding-right:5px !important; text-align: center; font-size: 22px;"><b></b></td>
+				<td width="875" style="text-align: center; font-size: 22px;"><b>"sunset"</td>
+			</tr>
+			</tbody>
+		  </table>
+		  <!-- seascape -->
+		  <table class="table" width="1">
+			<tbody>
+		  <tr>
+			<td style="padding-right:5px !important;"><img id="seascape_content" class="round" width="250" src="./resources/data/seascape.png"/></td>
+			<td><img alt="" id="seascape_content1" class="round" width="250" src="./resources/content/seascape/1.png"/></td>
+			<td><img alt="" id="seascape_content2" class="round" width="250" src="./resources/content/seascape/2.png"/></td>
+			<td><img alt="" id="seascape_content3" class="round" width="375" src="./resources/content/seascape/3.png"/></td>
+		  </tr>
+			</tbody>
+		  </table>
+		  <table class="table" width="1">
+			<tbody>
+			<tr>
+				<td width="250" style="padding-right:5px !important; text-align: center; font-size: 22px;"><b></b></td>
+				<td width="875" style="text-align: center; font-size: 22px;"><b>"oasis"</td>
+			</tr>
+			</tbody>
+		  </table>
+		  <!-- islands -->
+		  <table class="table" width="1">
+			<tbody>
+		  <tr>
+			<td style="padding-right:5px !important;"><img id="islands_content" class="round" width="250" src="./resources/data/islands.png"/></td>
+			<td><img alt="" id="islands_content1" class="round" width="250" src="./resources/content/islands/1.png"/></td>
+			<td><img alt="" id="islands_content2" class="round" width="375" src="./resources/content/islands/2.png"/></td>
+			<td><img alt="" id="islands_content3" class="round" width="250" src="./resources/content/islands/3.png"/></td>
+		  </tr>
+			</tbody>
+		  </table>
+		  <table class="table" width="1">
+			<tbody>
+			<tr>
+				<td width="250" style="padding-right:5px !important; text-align: center; font-size: 22px;"><b></b></td>
+				<td width="875" style="text-align: center; font-size: 22px;"><b>"Grand Canyon"</td>
+			</tr>
+			</tbody>
+		  </table>
+		  <!-- dunes -->
+		  <table class="table" width="1">
+			<tbody>
+		  <tr>
+			<td style="padding-right:5px !important;"><img id="dunes_content" class="round" width="250" src="./resources/data/dunes.png"/></td>
+			<td><img alt="" id="dunes_content1" class="round" width="250" src="./resources/content/dunes/1.png"/></td>
+			<td><img alt="" id="dunes_content2" class="round" width="375" src="./resources/content/dunes/2.png"/></td>
+			<td><img alt="" id="dunes_content3" class="round" width="250" src="./resources/content/dunes/3.png"/></td>
+		  </tr>
+			</tbody>
+		  </table>
+		 
+
+	</center>
+
+	<br>
+
+	<!-- text guided content generation in ROI -->
+	<center><h1 style="font-size: 36px;">Image Generation with Text-Guided Content in ROI</h1></center>
+	<p>Instead of guiding the generation of the entire image, we can also confine the modifications to a user prescribed region of interest.</p>
+
+	<center>
+		<table class="table" width="1">
+			<tbody>
+			<tr>
+				<td width="250" style="padding-right:5px !important; text-align: center; font-size: 22px;"><b>Training Image</b></td>
+				<td width="250" style="text-align: center; font-size: 22px; padding-right:5px"><b>Input</b></td>
+				<td width="250" style="text-align: center; font-size: 22px;"><b>Output</b></td>
+
+			</tr>
+			</tbody>
+		  </table>
+		<!-- pyramids -->
+		<table class="table" width="1">
+			<tbody>
+		  <tr>
+			<td style="padding-right:5px !important;"><img alt="" id="pyramids_content_roi" class="round" width="250" src="./resources/data/pyramids.png"/></td>
+			<td style="padding-right:5px !important;">
+				<div class="square-content">
+					<img alt="" id="pyramids_content_roi_in" class="round" width="250" src="./resources/data/pyramids.png"/>
+					<div class="square-pyramid">
+					  <p style="text-align:center; margin-top: 25;" >"cracks"</p>
+					</div>
+				</div>
+			</td>
+			<td><img alt="" id="pyramids_content_roi_out" class="round" width="250" src="./resources/content_ROI/pyramids/1.png"/></td>
+		  </tr>
+			</tbody>
+		  </table>
+		<!-- mountains 2 -->
+		<table class="table" width="1">
+			<tbody>
+			<tr>
+			<td style="padding-right:5px !important;"><img alt="" id="mountains2_content_roi" class="round" width="250" src="./resources/data/mountains_2.png"/></td>
+			<td style="padding-right:5px !important;">
+				<div class="square-content">
+					<img alt="" id="mountains2_content_roi_in" class="round" width="250" src="./resources/data/mountains_2.png"/>
+					<div class="square-mountains2">
+						<p style="text-align:center; margin-top: 7;" >"clouds"</p>
+					</div>
+				</div>
+			</td>
+			<td><img alt="" id="mountains2_content_roi_out" class="round" width="250" src="./resources/content_ROI/mountains/1.png"/></td>
+			</tr>
+			</tbody>
+			</table>
+	</center>	
+
+	<br>
+
+	<!-- images ROI -->
+	<hr id="ROI">
+
+	<center><h1 style="margin-top: 65px;">Generation guided by image contents within ROIs</h1></center>
+	<p>SinDDM is able to generate images with user-prescribed contents within several
+		ROIs. The rest of the image is generated randomly but coherently around those constrains.</p>
+
+	<center>
+		<table class="table" width="1">
+			<tbody>
+			<tr>
+				<td width="375" style="padding-left:100px !important; text-align: center; font-size: 22px;"><b>Training Image</b></td>
+				<td width="375" style="text-align: center; font-size: 22px; padding-left:20px !important;"><b>ROI Guidance</b></td>
+				<td width="375" style="text-align: center; font-size: 22px; padding-left:30px !important"><b>Random Samples</b></td>
+			</tr>
+			</tbody>
+		  </table>
+		<!-- 2 -->
+		  <div class="row">
+			<div class="column" style="width: 30% !important; margin-left:140px">
+				<img id="2_roi" class="round" width="250" src="./resources/data/2.png">
+			</div>
+			<div class="column" style="width: 20% !important; margin-left:-10px">
+				<img id="2_roi_patches" class="round" border="1px solid" width="250" src="./resources/ROI/2/2_patches.png">
+			</div>
+			<div class="column" style="width: 20% !important; margin-left:125px" "="">
+				<div id="carousel_2_roi" class="carousel slide carousel-fade" data-bs-ride="carousel">
+					<div class="carousel-inner">
+					  <div class="carousel-item active">
+						<img class="d-block" width="250" src="./resources/ROI/2/1.png">
+					  </div>
+					  <div class="carousel-item">
+						<img class="d-block" width="250" src="./resources/ROI/2/2.png">
+					  </div>
+					  <div class="carousel-item">
+						<img class="d-block" width="250" src="./resources/ROI/2/3.png">
+					  </div>
+					</div>
+				  </div>
+			</div>
+		</div>
+		<!-- starry night -->
+		<div class="row">
+			<div class="column" style="width: 20% !important; margin-left:200px;">
+				<img id="starry_night_roi" class="round" width="250" src="./resources/data/starry_night.png">
+			</div>
+			<div class="column" style="width: 28% !important;">
+				<img id="starry_night_roi_patches" class="round" border="1px solid" width="375" src="./resources/ROI/starry_night/starry_night_patches.png">
+			</div>
+			<div class="column" style="width: 33% !important;" "="">
+				<div id="carousel_starry_night_roi" class="carousel slide carousel-fade" data-bs-ride="carousel">
+					<div class="carousel-inner">
+					  <div class="carousel-item">
+						<img class="d-block" width="375" src="./resources/ROI/starry_night/1.png">
+					  </div>
+					  <div class="carousel-item active">
+						<img class="d-block" width="375" src="./resources/ROI/starry_night/2.png">
+					  </div>
+					  <div class="carousel-item">
+						<img class="d-block" width="375" src="./resources/ROI/starry_night/3.png">
+					  </div>
+					</div>
+				  </div>
+			</div>
+		</div>
+		
+	</center>
+
+
+	<br>
+	<hr id="paper">
+
+	<!-- paper -->
+	<table align=center width=750px>
+		<center><h1 style="margin-top: 65px;">Paper</h1></center>
+		<tr>
+			<td><a href=""><img alt="" class="layered-paper-big" style="height:175px" src="./resources/paper.png"/></a></td>
+			<td><span style="font-size:14pt"><b>SinDDM: A Single Image Denoising Diffusion Model.</b><br>
+				Vladimir Kulikov, Shahar Yadin,  Matan Kleiner, Tomer Michaeli.</span>
+				<br>
+				<!-- <span style="font-size:14pt"><a href='' target="_blank" rel="noopener noreferrer">[Arxiv]</a></span> -->
+				<span style="font-size:14pt">[Arxiv]</span>
+				<span style="font-size:14pt"><a href='resources/sinddm_paper.pdf' target="_blank" rel="noopener noreferrer">[Paper]</a></span>
+				<!-- <span style="font-size:14pt"><a href="./resources/bibtex.txt">[Bibtex]</a> -->
+				<!-- (<a href="./resources/camera-ready.pdf">camera ready</a>)<br> -->
+				<!-- <span style="font-size:4pt"><a href=""><br></a> -->
+				</span>
+			</td>
+		</tr>
+	</table>
+	<!-- <p class="section">&nbsp;</p>
+	<p class="section" id="bibtex"><b>Bibtex</b></p>
+	<table border="0">
+	   <tbody>
+		  <pre class="command-copy" 
+		   style=" display: block;
+				background: #eee;
+				white-space: pre;
+				-webkit-overflow-scrolling: touch;
+				max-width: 100%;
+				min-width: 100px;
+				border-radius: 20px;
+				padding: 0;;">
+
+		@article{kulikov2022sinddm,
+			title      = {SinDDM: A Single Image Denoising Diffusion Model},
+			author     = {Kulikov, Vladimir and Yadin, Shahar and Kleiner, Matan and Michaeli, Tomer},
+			journal    = {arXiv preprint arXiv:?????},
+			year       = {2022}
+		}
+		 </pre>
+	   </tbody>
+	</table> -->
+	<p class="section">&nbsp;</p>
+	<center>
+		  <table class="table" width="1">
+			<tbody>
+			<tr>
+				<td style="font-size:14pt; text-align: left; padding-right: 40px !important;">
+					More results, comparison to other methods and further discussion about our model can be found in the <a href="" target="_blank" rel="noopener noreferrer">supplementary material</a>.<br>
+					<!-- Our official code implementation can be found in the official SinDDM <a href="">github repository</a>. -->
+					Our official code implementation can be found in the official SinDDM github repository (coming soon).
+
+				</td>
+			</tr>
+			</tbody>
+		  </table>
+	</center>
+	<center>
+		<table class="table" width="1">
+			<tbody>
+			<tr>
+				<td><a target="_blank" rel="noopener noreferrer" href="" style="color:black !important;"><img alt="" id="supp" class="round" width="125" border="1px solid" style="margin-right:40px;" src="./resources/supp.png"/></a></td>
+				<!-- <td><a href="" target="_blank" rel="noopener noreferrer"><img alt="" id="github_logo" class="round" width="125" src="./resources/github_logo.png"/></a></td> -->
+				<td><img alt="" id="github_logo" class="round" width="125" src="./resources/github_logo.png"/></td>
+
+			</tr>
+			</tbody>
+		  </table>
+		  <table class="table" width="1">
+			<tbody>
+			<tr>
+				<td width="170" style="font-size:14pt; text-align: center; padding-right: 40px !important;"><a href='' target="_blank" rel="noopener noreferrer">[Supplementary]</a></td>
+				<!-- <td width="125" style="font-size:14pt; text-align: center;"><a target="_blank" rel="noopener noreferrer" href=''>[Code]</a></td> -->
+				<td width="125" style="font-size:14pt; text-align: center;">[Code]</td>
+
+			</tr>
+			</tbody>
+		  </table>
+	</center>
 
 
 
+
+	<hr>
+	<br>
+
+	<!-- acknowledgement -->
+	<table align=center width=900px>
+		<tr>
+			<td width=400px>
+				<left>
+					<center><h2>Acknowledgements</h2></center>
+					This webpage is inspired by the template that was originally made by <a href="http://web.mit.edu/phillipi/">Phillip Isola</a> and
+					 <a href="http://richzhang.github.io/">Richard Zhang</a> for a <a href="http://richzhang.github.io/colorization/">colorful</a> ECCV project;
+					  the code for the original template can be found <a href="https://github.com/richzhang/webpage-template">here</a>.<br>
+					  A lot of features are taken from <a href="https://getbootstrap.com/">bootstrap</a>.<br>
+					  All fonts are taken from <a href="https://fontawesome.com/">font awesome.</a>
+				</left>
+			</td>
+		</tr>
+	</table>
+
+<br>
+
+</div>
+
+<!-- js scripts -->
+<script>
+	$(document).ready(function () {
+		$('#myDropdown .dropdown-menu').on({
+	"click":function(e){
+      e.stopPropagation();
+    }
+});
+$('.closer').on('click', function () {
+    $('.btn-group').removeClass('open');
+});
+
+});
+
+// sticky navbar 
+document.addEventListener("DOMContentLoaded", function(){
+  window.addEventListener('scroll', function() {
+      if (window.scrollY > 50) {
+        document.getElementById('navbar_top').classList.add('fixed-top');
+        // add padding top to show content behind navbar
+        navbar_height = document.querySelector('.navbar').offsetHeight;
+        document.body.style.paddingTop = navbar_height + 'px';
+      } else {
+        document.getElementById('navbar_top').classList.remove('fixed-top');
+         // remove padding top from body
+        document.body.style.paddingTop = '0';
+      } 
+  });
+}); 
+
+// up button
+//Get the button
+let mybutton = document.getElementById("btn-back-to-top");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function () {
+  scrollFunction();
+};
+
+function scrollFunction() {
+  if (
+    document.body.scrollTop > 20 ||
+    document.documentElement.scrollTop > 20
+  ) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+// When the user clicks on the button, scroll to the top of the document
+mybutton.addEventListener("click", backToTop);
+
+function backToTop() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+
+</script>
 
 </body>
 </html>
