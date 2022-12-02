@@ -18,6 +18,10 @@ h1 {
     font-weight:300;
 }
 
+p {
+    font-size: 14pt;
+}
+
 .disclaimerbox {
     background-color: #eee;		
     border: 1px solid #eeeeee;
@@ -80,6 +84,7 @@ td.dl-link {
     25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
     margin-left: 10px;
     margin-right: 45px;
+    margin-bottom: 30px;
 }
 
 .paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
@@ -123,17 +128,17 @@ width: 50% !important;
 padding: 5px;
 }
 
-.row::after {
+/* @media only screen and (min-width:900px){
+.column div {
+    display: block;
+}
+} */
+
+/* .row::after {
 content: "";
 clear: both;
 display: table;
-}
-
-/* .dropdown, .dropend, .dropstart, .dropup {
-    position: absolute !important;
-    display: inline-block;
 } */
-
 
 .btn-group, .btn-group-vertical {
     position: absolute !important;
@@ -183,13 +188,16 @@ display: table;
     cursor: pointer;
   }
 
-  .table{
+ .smallpad.table{
     width: unset !important;
     margin-bottom: 0.5rem !important;
   }
 
+td {
+    border: none !important;
+}
 
-.table>:not(caption)>*>* {
+.smallpad.table>:not(caption)>*>* {
     padding: 1 !important;
     background-color: var(--bs-table-bg);
     border-bottom-width: 0px !important;
@@ -198,8 +206,9 @@ display: table;
 
 .square-pyramid {
     position: absolute;
-    left: 110px;
-    top: 40;
+    top: 52%;
+    left: 61%;
+    transform: translate(-50%, -50%);
     width: 32%;
     height: 50%;
     background-color: rgb(187 182 183 / 73%);
@@ -207,8 +216,9 @@ display: table;
  
 .square-mountains2 {
     position: absolute;
-    left: 141px;
-    top: 0px;
+    top: 10%;
+    left: 75%;
+    transform: translate(-50%, -50%);
     width: 35%;
     height: 20%;
     background-color: rgb(187 182 183 / 73%);
