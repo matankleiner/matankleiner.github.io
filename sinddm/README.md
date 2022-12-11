@@ -7,4 +7,4 @@ This webpage is inspired by the template that was originally made for a [colorfu
 
  We thank [Hila Manor](https://www.linkedin.com/in/hilamanor/) for the help with this website.
 
-A lot of features are taken from [bootstrap](https://getbootstrap.com/). All fonts are taken from [font awesome](https://fontawesome.com/).
+A lot of features are taken from [bootstrap](https://getbootstrap.com/). All icons are taken from [font awesome](https://fontawesome.com/).
