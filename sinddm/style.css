@@ -144,13 +144,13 @@ display: table;
 
   pre {
     position: relative;
-  }
-  
-  pre {
     display: block;
     padding: 20px;
     background: #f2f2f2;
     color: #555755;
+    padding: 1rem 1rem 1rem 5rem;
+    border-radius: 20px !important;
+    min-width: 100px;
   }
   
   span.command-copy {
@@ -206,4 +206,9 @@ td {
     position: relative;
     margin-top: 0px; 
     margin-left: 0px; 
+  }
+
+  .btn-light:hover { 
+    background: #eee !important;
+    border-color: #ccc !important;
   }

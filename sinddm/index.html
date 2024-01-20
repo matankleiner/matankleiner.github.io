@@ -719,27 +719,16 @@
 		<p class="section" id="bibtex"><b>Bibtex</b></p>
 		<table border="0">
 		<tbody>
-			<pre class="command-copy" 
-			style=" display: block;
-					background: #eee;
-					white-space: pre;
-					-webkit-overflow-scrolling: touch;
-					max-width: 100%;
-					min-width: 100px;
-					border-radius: 20px;
-					padding: 0;;">
-
-
-					@inproceedings{kulikov2023sinddm,
-					  title={Sinddm: A single image denoising diffusion model},
-					  author={Kulikov, Vladimir and Yadin, Shahar and Kleiner, Matan and Michaeli, Tomer},
-					  booktitle={International Conference on Machine Learning},
-					  pages={17920--17930},
-					  year={2023},
-					  organization={PMLR}
-					}
-
-			</pre>
+			<pre class="command-copy"><div class="container"><div class="row"><div class="col" id="citation">
+@inproceedings{kulikov2023sinddm,
+	title={Sinddm: A single image denoising diffusion model},
+	author={Kulikov, Vladimir and Yadin, Shahar and Kleiner, Matan and Michaeli, Tomer},
+	booktitle={International Conference on Machine Learning},
+	pages={17920--17930},
+	year={2023},
+	organization={PMLR}
+}
+	</div><div class="col text-end"><button type="button" class="btn btn-light" onclick="copyBib()" onmouseover="console.log('hover');"><i class="fa-regular fa-copy"></i></button></div></div></div></pre>
 		</tbody>
 		</table>
 		<center>
@@ -864,6 +853,12 @@ mybutton.addEventListener("click", backToTop);
 function backToTop() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
+}
+
+// copy button
+function copyBib() {
+  let copyText = $("#citation")[0];
+  navigator.clipboard.writeText(copyText.getInnerHTML());
 }
 
 </script>
