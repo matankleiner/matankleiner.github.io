@@ -1,0 +1,95 @@
+
+/* from https://github.com/t413/SinglePaged/blob/gh-pages/_includes/css/main.css*/
+
+
+.open-sans-300 {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400; /* 300 - 800 */
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+.poppins-light {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.poppins-medium {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+nav ul {
+  margin-right: auto;
+}
+
+nav ul li.nav-item.p-home a:hover, nav ul li.nav-item.p-home a.active { 
+    color: #ffc107 !important;
+    font-weight: 600;
+}
+
+nav ul li.nav-item.p-publications a:hover, nav ul li.nav-item.p-publications a.active { 
+    color: lightskyblue !important;
+    font-weight: 600;
+} 
+nav ul li.nav-item.p-teaching a:hover , nav ul li.nav-item.p-teaching a.active{ 
+    color: forestgreen !important;
+    font-weight: 600;
+} 
+
+.section {
+  padding:40px 0;
+} 
+
+.subtlecircle {
+  text-align:center;
+  z-index:3;
+  border-radius:50%;
+  -moz-border-radius:50%;
+  -webkit-border-radius:50%;
+  box-shadow: 0px 1px 15px rgba(0,0,0,0.05);
+}
+
+.sectiondivider {
+  width:80px;
+  height:80px;
+  padding:12px;
+  position:absolute;
+  margin-top:-80px;
+  left:50%;
+  margin-left:-40px;
+}
+
+.sectiondivider .fa-stack {
+  font-size: 35px;
+  position: static;
+  margin-top: -6px;
+}
+.sectiondivider .fa-circle { color: #fff; }
+
+.section-title {
+  font-size:24px;
+  font-weight:500;
+  text-transform:uppercase;
+}
+
+.p-publications{
+    color: lightskyblue;
+}
+
+.p-teaching{
+    color: forestgreen;
+}
+
+.bg-gray {
+    /* background-color:  rgb(0 0 0 / 5%); */
+    background-color: var(--bs-gray-200);
+
+}
+
+.anchor {
+    scroll-margin-top: 98px;
+}
