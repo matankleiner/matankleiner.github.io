@@ -101,6 +101,39 @@
   
         <div class="container" style="max-width: 1000px;">
 
+            <div class="card mb-3 shadow anchor" id="ELAD">
+                <div class="card-body">
+                    <div class="row open-sans-300">
+                        <div class="col"><h5 class="card-title">ELAD: Blind Face Restoration using Expectation-based Likelihood Approximation and Diffusion Prior</h5></div>
+                        <div class="col-auto">
+                            <a href="https://man-sean.github.io/elad-website/" target="_blank" rel="noopener noreferrer"><i class="fa fa-external-link fa-lg" aria-hidden="true"></i></a>
+                            &nbsp;
+                            <!-- <a href="https://github.com/matankleiner/All-Optical-SR" target="_blank" rel="noopener noreferrer"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a> -->
+                            <!-- &nbsp; -->
+                            <span class="badge bg-primary">SIGGRAPH Asia 2025</span>
+                        </div>
+                    </div>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                        <a href="https://scholar.google.com/citations?user=VRCALiIAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="text-muted">Sean Man</a>,
+                        <a href="https://www.guyohayon.com/" target="_blank" class="text-muted">Guy Ohayon</a>,
+                        <a href="https://scholar.google.com/citations?user=kJeQaucAAAAJ&hl=en" target="_blank" class="text-muted">Ron Raphaeli</a>,    
+                        <b>Matan Kleiner</b>,
+                        <a href="https://elad.cs.technion.ac.il/" target="_blank" class="text-muted">Michael Elad</a>
+                    </h6>
+                                      
+                    <p class="card-text">
+                        Blind Face Restoration (BFR) aims to recover face images suffering from unknown degradations. A common approach to solve BFR is via plug-and-play methods, combining a likelihood function with pre-trained diffusion models as priors.
+                        However, as the likelihood is inherently unknown in BFR, existing methods rely instead on heuristic constraints, which leads to suboptimal results.
+                        We introduce Expectation-based Likelihood Approximation with Diffusion prior (ELAD), a novel plug-and-play approach that explicitly models the likelihood function for BFR. 
+                        ELAD estimates the moments of the likelihood distribution by employing a Degradation Estimator to predict the degradation sequence from the input, which enables principled Bayesian inference without training.
+                    </p>
+                </div>
+                <div class="row">
+                    <img src="assets/elad.png" class="card-img-bottom" style="padding-left: 7rem; padding-right: 7rem; padding-bottom: 1rem;" alt="">
+                </div>
+            </div>
+
+
 
             <div class="card mb-3 shadow anchor" id="Optical SR">
                 <div class="card-body">
