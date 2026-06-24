@@ -93,3 +93,163 @@ nav ul li.nav-item.p-teaching a:hover , nav ul li.nav-item.p-teaching a.active{
 .anchor {
     scroll-margin-top: 98px;
 }
+
+
+
+.media-hover-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3; /* Change this if you want another fixed shape */
+    overflow: hidden;
+    background: white;
+    padding-left: 80px; /* small white gap to the left of the media */
+    box-sizing: border-box;
+}
+
+.coherence-media {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    max-width: 100%;
+    aspect-ratio: 4488 / 2214;
+    background: white;
+    padding-left: 80px; /* small white gap to the left of the media */
+    box-sizing: border-box;
+}
+
+/* Both media elements fill the same exact space */
+.media-video,
+.media-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    /* object-fit: cover;     */
+    object-fit: contain;
+    background: white;
+
+}
+
+/* Default: show video */
+.media-video {
+    display: block;
+}
+
+/* Default: hide image */
+.media-image {
+    display: none;
+}
+
+/* On hover: hide video */
+.media-hover-container:hover .media-video {
+    display: none;
+}
+
+/* On hover: show PNG */
+.media-hover-container:hover .media-image {
+    display: block;
+}
+
+.coherence-media .media-image,
+.coherence-media .media-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: white;
+    transition: opacity 0.2s ease;
+}
+
+.coherence-media .media-image {
+    display: block;
+    opacity: 1;
+    z-index: 1;
+}
+
+.coherence-media .media-video {
+    display: block;
+    opacity: 0;
+    z-index: 2;
+}
+
+.coherence-media:hover .media-image {
+    opacity: 0;
+}
+
+.coherence-media:hover .media-video {
+    opacity: 1;
+}
+
+
+.project-media {
+    position: relative;
+    width: 100%;
+    height: 230px;
+    overflow: hidden;
+    background: white;
+    padding-left: 80px; /* small white gap to the left of the media */
+    box-sizing: border-box;
+}
+
+/* All images/videos fill the same fixed box */
+.project-media img,
+.project-media video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.project-media video {
+    object-fit: contain;
+}
+
+.project-media img {
+    object-fit: contain;
+    background: white;
+}
+
+/* Default state: show video */
+.project-media .media-video {
+    opacity: 1;
+    z-index: 1;
+    transition: opacity 0.2s ease;
+}
+
+/* Default state: hide PNG */
+.project-media .media-image {
+    display: block;
+    opacity: 0;
+    z-index: 2;
+    transition: opacity 0.2s ease;
+}
+
+.project-media .media-image-default {
+    opacity: 1;
+    z-index: 1;
+}
+
+.project-media .media-image-hover {
+    opacity: 0;
+    z-index: 2;
+}
+
+/* Hover state: hide video */
+.project-media:hover .media-video {
+    opacity: 0;
+}
+
+/* Hover state: show PNG */
+.project-media:hover .media-image {
+    opacity: 1;
+}
+
+.project-media:hover .media-image-default {
+    opacity: 0;
+}
+
+.project-media:hover .media-image-hover {
+    opacity: 1;
+}

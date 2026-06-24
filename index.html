@@ -46,6 +46,7 @@
             <div class="collapse navbar-collapse" id="main_nav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#se_publications">Selected Publications</a></li>
                     <li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
                     <!-- <li class="nav-item p-teaching"><a class="nav-link" href="#teaching">Teaching</a></li> -->
                 </ul>
@@ -101,208 +102,484 @@
   
         <div class="container" style="max-width: 1000px;">
 
-            <div class="card mb-3 shadow anchor" id="ELAD">
-                <div class="card-body">
-                    <div class="row open-sans-300">
-                        <div class="col"><h5 class="card-title">ELAD: Blind Face Restoration using Expectation-based Likelihood Approximation and Diffusion Prior</h5></div>
-                        <div class="col-auto">
-                            <a href="https://man-sean.github.io/elad-website/" target="_blank" rel="noopener noreferrer"><i class="fa fa-external-link fa-lg" aria-hidden="true"></i></a>
-                            &nbsp;
-                            <!-- <a href="https://github.com/matankleiner/All-Optical-SR" target="_blank" rel="noopener noreferrer"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a> -->
-                            <!-- &nbsp; -->
-                            <span class="badge bg-primary">SIGGRAPH Asia 2025</span>
-                        </div>
-                    </div>
-                        <h6 class="card-subtitle mb-2 text-muted">
-                        <a href="https://scholar.google.com/citations?user=VRCALiIAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="text-muted">Sean Man</a>,
-                        <a href="https://www.guyohayon.com/" target="_blank" class="text-muted">Guy Ohayon</a>,
-                        <a href="https://scholar.google.com/citations?user=kJeQaucAAAAJ&hl=en" target="_blank" class="text-muted">Ron Raphaeli</a>,    
-                        <b>Matan Kleiner</b>,
-                        <a href="https://elad.cs.technion.ac.il/" target="_blank" class="text-muted">Michael Elad</a>
-                    </h6>
-                                      
-                    <p class="card-text">
-                        Blind Face Restoration (BFR) aims to recover face images suffering from unknown degradations. A common approach to solve BFR is via plug-and-play methods, combining a likelihood function with pre-trained diffusion models as priors.
-                        However, as the likelihood is inherently unknown in BFR, existing methods rely instead on heuristic constraints, which leads to suboptimal results.
-                        We introduce Expectation-based Likelihood Approximation with Diffusion prior (ELAD), a novel plug-and-play approach that explicitly models the likelihood function for BFR. 
-                        ELAD estimates the moments of the likelihood distribution by employing a Degradation Estimator to predict the degradation sequence from the input, which enables principled Bayesian inference without training.
-                    </p>
-                </div>
-                <div class="row">
-                    <img src="assets/elad.png" class="card-img-bottom" style="padding-left: 7rem; padding-right: 7rem; padding-bottom: 1rem;" alt="">
-                </div>
+
+        <div class="card mb-3 shadow anchor" id="sp3">
+            <div class="row g-0 align-items-center">
+
+        <!-- Left image -->
+        <div class="col-md-4">
+            <div class="project-media rounded-start">
+                <img
+                    src="assets/sp3_method.jpg"
+                    class="media-image media-image-default"
+                    alt="SP³ project image"
+                >
+                <img
+                    src="assets/sp3_res.png"
+                    class="media-image media-image-hover"
+                    alt="SP³ project image"
+                >
             </div>
+        </div>
 
+        <!-- Right content -->
+        <div class="col-md-8">
+            <div class="card-body">
 
+                <h6 class="card-subtitle mb-2 text-muted">
+                    <a href="https://man-sean.github.io/sp3-website/" target="_blank" rel="noopener noreferrer">
+                        SP<sup>3</sup>: Spherical Priors for Plug-and-Play Restoration
+                    </a>
+                    </br>
+                    <a href="https://man-sean.github.io/" target="_blank" rel="noopener noreferrer" class="text-muted">Sean Man</a>,
+                    <a href="https://scholar.google.com/citations?user=kJeQaucAAAAJ&hl=en" target="_blank" class="text-muted">Ron Raphaeli<sup>*</sup></a>,
+                    <b>Matan Kleiner<sup>*</sup></b>,
+                    <a href="https://orronai.github.io/" target="_blank" class="text-muted">Or Ronai</a>
+                    </br>
+                    <b>Preprint 2026</b>
+                </h6>
 
-            <div class="card mb-3 shadow anchor" id="Optical SR">
-                <div class="card-body">
-                    <div class="row open-sans-300">
-                        <div class="col"><h5 class="card-title">Can the Success of Digital Super-Resolution Networks Be Transferred to Passive All-Optical Systems?</h5></div>
-                        <div class="col-auto">
-                            <a href="https://www.degruyterbrill.com/document/doi/10.1515/nanoph-2025-0294/html" target="_blank" rel="noopener noreferrer"><i class="fa fa-external-link fa-lg" aria-hidden="true"></i></a>
-                            &nbsp;
-                            <a href="https://github.com/matankleiner/All-Optical-SR" target="_blank" rel="noopener noreferrer"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a>
-                            &nbsp;
-                            <span class="badge bg-primary">Nanophotonics 2025</span>
-                        </div>
+                <p class="card-text">
+                    SP<sup>3</sup> is a plug-and-play restoration with Spherical Encoders as generative priors, enabling stable anytime results with perceptual quality
+                     comparable to zero-shot diffusion and flow methods while running 3-630x faster.  
+                </p>
+
                     </div>
-                        <h6 class="card-subtitle mb-2 text-muted">
-                        <b>Matan Kleiner</b>,
-                        <a href="https://www.linkedin.com/in/lior-michaeli-62a24862/" target="_blank" rel="noopener noreferrer" class="text-muted">Lior Michaeli</a>,
-                        <a href="https://tomer.net.technion.ac.il/" target="_blank" class="text-muted">Tomer Michaeli</a></h6>
-                                      
-                    <p class="card-text">
-                        A task that could greatly benefit from an all-optical implementation is spatial super-resolution. 
-                        This would allow overcoming the fundamental resolution limitation of conventional optical systems, dictated by their finite numerical aperture. 
-                        In this work we examine whether the success of digital super-resolution networks can be replicated with all-optical neural networks, considering networks 
-                        with phase-only nonlinearities. 
-                        We find that while promising, super-resolution networks face two key physical challenges: (i) a tradeoff between reconstruction fidelity and 
-                        energy preservation along the optical path, and (ii) a limited dynamic range of input intensities that can be effectively processed. 
-                        These findings offer a first step toward understanding and addressing the design constraints of passive, all-optical super-resolution systems, as well as passive all-optical nonlinear network. 
-                        </br>
-                        <span style="color: rgb(255, 123, 0);">Presented as an <i>oral presentation</i> at CLEO 2025.</span>
-                    </p>
                 </div>
-                <div class="row">
-                    <img src="assets/OpticalSR.png" class="card-img-bottom" style="padding-left: 7rem; padding-right: 7rem; padding-bottom: 1rem;" alt="">
-                </div>
+
             </div>
+        </div>
 
-            <div class="card mb-3 shadow" id="FlowEdit">
-                <div class="card-body">
-                    <div class="row open-sans-300">
-                        <div class="col"><h5 class="card-title">FlowEdit: Inversion-Free Text-Based Editing Using Pre-Trained Flow Models</h5></div>
-                        <div class="col-auto">
-                            <a href="https://matankleiner.github.io/flowedit/" target="_blank" rel="noopener noreferrer"><i class="fa fa-external-link fa-lg" aria-hidden="true"></i></a>
-                            &nbsp;
-                            <a href="https://github.com/fallenshock/FlowEdit" target="_blank" rel="noopener noreferrer"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a>
-			                 &nbsp;
-                             <a href="https://huggingface.co/spaces/fallenshock/FlowEdit" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">🤗</a>
-			                 &nbsp;
-                            <span class="badge bg-primary">ICCV 2025</span>
-                        </div>
-                    </div>
-                    <h6 class="card-subtitle mb-2 text-muted">
-                        <a href="https://www.linkedin.com/in/vladimir-kulikov/" target="_blank" rel="noopener noreferrer" class="text-muted">Vladimir Kulikov</a>,
-                        <b>Matan Kleiner</b>,
-                        <a href="https://inbarhub.github.io/www/" target="_blank" rel="noopener noreferrer" class="text-muted">Inbar Huberman-Spiegelglas</a>,
-                        <a href="https://tomer.net.technion.ac.il/" target="_blank" class="text-muted">Tomer Michaeli</a></h6>
-                            <p class="card-text">
-                                We introduce FlowEdit, a text-based editing method for pre-trained T2I flow models, which is inversion-free, optimization-free and 
-                                model agnostic. Our method constructs an ODE that directly maps between the source and target distributions (corresponding to the source 
-                                and target text prompts) and achieves a lower transport cost than the inversion approach. This leads to state-of-the-art results, as we 
-                                illustrate with Stable Diffusion 3 and FLUX.
-                            </br>
-                                <span style="color: rgb(255, 123, 0);">ICCV 2025 Best Student Paper.</span>
-
-                    </p>
-                </div>
-                <div class="row">
-                    <img src="assets/FlowEdit.png" class="card-img-bottom" style="padding-left: 7rem; padding-right: 7rem;" alt="">
-                </div>
+       <div class="card mb-3 shadow anchor" id="SinDDM">
+        <div class="row g-0 align-items-center">
+        <div class="col-md-4">
+            <div class="project-media rounded-start">
+                <img
+                    src="assets/frp.png"
+                    alt="FRP project image"
+                >
             </div>
+        </div>
 
+        <div class="col-md-8">
+            <div class="card-body">
 
-            <div class="card mb-3 shadow anchor" id="Coherence Aware">
-                <div class="card-body">
-                    <div class="row open-sans-300">
-                        <div class="col"><h5 class="card-title">Coherence Awareness in Diffractive Neural Networks</h5></div>
-                        <div class="col-auto">
-                            <a href="https://onlinelibrary.wiley.com/doi/10.1002/lpor.202401299" target="_blank" rel="noopener noreferrer"><i class="fa fa-external-link fa-lg" aria-hidden="true"></i></a>
-                            &nbsp;
-                            <a href="https://github.com/matankleiner/Coherence-Awareness-in-Diffractive-Neural-Networks" target="_blank" rel="noopener noreferrer"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a>
-                            &nbsp;
-                            <span class="badge bg-primary">Laser Photonics Rev. 2025</span>
-                        </div>
+                <h6 class="card-subtitle mb-2 text-muted">
+                    <a href="https://www.sciencedirect.com/science/article/pii/S0264127526009780" target="_blank" rel="noopener noreferrer">
+                        Neural Inverse Design of Self Shaping Composites
+                    </a>
+                    </br>
+                    <a href="https://www.linkedin.com/in/gal-kapon-84ab85117/" target="_blank" class="text-muted">Gal Kapon</a>,
+                    <a href="https://www.arielleblonder.com/" target="_blank" class="text-muted">Arielle Blonder</a>,
+                    <b>Matan Kleiner</b>,
+                    <a href="https://tomer.net.technion.ac.il/" target="_blank" class="text-muted">Tomer Michaeli</a>,
+                    <a href="https://architecture.technion.ac.il/members/guy-austern-2/" target="_blank" class="text-muted">Guy Austern</a>
+                    </br>
+                    <b>Materials & Design 2026</b>
+                </h6>
+
+                <p class="card-text">
+                    We introduce a data-driven approach for the inverse design of self-shaping fiber-reinforced polymer sheets, 
+                    leveraging a large synthetic dataset generated from physically informed simulations. 
+                </p>
+
                     </div>
-                        <h6 class="card-subtitle mb-2 text-muted">
-                        <b>Matan Kleiner</b>,
-                        <a href="https://www.linkedin.com/in/lior-michaeli-62a24862/" target="_blank" rel="noopener noreferrer" class="text-muted">Lior Michaeli</a>,
-                        <a href="https://tomer.net.technion.ac.il/" target="_blank" class="text-muted">Tomer Michaeli</a></h6>
-                                      
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card mb-3 shadow anchor" id="Angular Encoding">
+        <div class="row g-0 align-items-center">
+        <div class="col-md-4">
+            <div class="project-media rounded-start">
+                <img
+                    src="assets/angular_arch.png"
+                    class="media-image media-image-default"
+                    alt="Angular Encoding project image"
+                >
+                <img
+                    src="assets/angular_res.png"
+                    class="media-image media-image-hover"
+                    alt="Angular Encoding project image"
+                >
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card-body">
+
+                <h6 class="card-subtitle mb-2 text-muted">
+                    <a href="https://arxiv.org/abs/2601.04825" target="_blank" rel="noopener noreferrer">
+                        Illumination Angular Spectrum Encoding for Controlling the Functionality of Diffractive Networks
+                    </a>
+                    </br>
+                    <b>Matan Kleiner</b>,
+                    <a href="https://www.linkedin.com/in/lior-michaeli-62a24862/" target="_blank" rel="noopener noreferrer" class="text-muted">Lior Michaeli</a>,
+                    <a href="https://tomer.net.technion.ac.il/" target="_blank" class="text-muted">Tomer Michaeli</a>
+                    </br>
+                    <b>Preprint 2026</b>
+                     <a href="https://github.com/matankleiner/Angular-Spectrum-Encoding" target="_blank" rel="noopener noreferrer"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a>
+                    </br>
+                    <span style="color: rgb(255, 123, 0);">Presented as an <i>oral presentation</i> at CLEO 2026</span>
+                </h6>
                     <p class="card-text">
-                        Diffractive neural networks are a promising framework for optical computing.  
-                        In this work we illustrate that, as opposed to imaging systems, in diffractive networks the degree of spatial coherence has a dramatic effect. 
-                        We show that when the spatial coherence length on the object is comparable to the minimal feature size preserved by the optical system, 
-                        neither the incoherent nor the coherent extremes serve as acceptable approximations. 
+                        Diffractive networks are typically trained for a single task, limiting their potential adoption in systems requiring multiple functionalities. 
+                        We propose a new control mechanism, based on the illumination's angular spectrum, where we shape the illumination using an amplitude mask that selectively controls 
+                        its angular components.
+                    </p>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card mb-3 shadow anchor" id="Optical Unc">
+        <div class="row g-0 align-items-center">
+        <div class="col-md-4">
+            <div class="project-media rounded-start">
+                <img
+                    src="assets/unc_method.png"
+                    class="media-image media-image-default"
+                    alt="Uncertainty Visualization project image"
+                >
+                <img
+                    src="assets/unc_res.png"
+                    class="media-image media-image-hover"
+                    alt="Uncertainty Visualization project image"
+                >
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card-body">
+
+                <h6 class="card-subtitle mb-2 text-muted">
+                    <a href="https://opg.optica.org/viewmedia.cfm?r=1&rwjcode=ol&uri=ol-51-8-2012&html=true" target="_blank" rel="noopener noreferrer">
+                        All-optical uncertainty visualization for ill-posed image restoration tasks
+                    </a>
+                    </br>
+                    <b>Matan Kleiner</b>,
+                    <a href="https://tomer.net.technion.ac.il/" target="_blank" class="text-muted">Tomer Michaeli</a>
+                    </br>
+                    <b>Optics Letters 2026</b>
+                     <a href="https://github.com/matankleiner/All-Optical-SR/tree/main/Uncertainty-Visualization" target="_blank" rel="noopener noreferrer"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a>
+                    </br>
+                    <span style="color: rgb(255, 123, 0);">Presented as an <i>oral presentation</i> at CLEO 2026</span>
+                </h6>
+                    <p class="card-text">
+                        Existing diffractive network designs for image restoration output only a single reconstruction for each input image, and thus do not inform the user of the inherent 
+                        uncertainty in the reconstruction. We explore a diffractive network architecture that simultaneously output multiple plausible reconstructions for each input image, 
+                        provides a highly informative visualization of the uncertainty in the reconstruction. 
+                    </p>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="card mb-3 shadow anchor" id="ELAD">
+            <div class="row g-0 align-items-center">
+
+        <!-- Left image -->
+        <div class="col-md-4">
+            <div class="project-media rounded-start">
+                <img
+                    src="assets/elad_res.png"
+                    class="media-image media-image-default"
+                    alt="ELAD project image"
+                >
+                <img
+                    src="assets/elad.png"
+                    class="media-image media-image-hover"
+                    alt="ELAD project image"
+                >
+            </div>
+        </div>
+
+        <!-- Right content -->
+        <div class="col-md-8">
+            <div class="card-body">
+
+                <h6 class="card-subtitle mb-2 text-muted">
+                    <a href="https://man-sean.github.io/elad-website/" target="_blank" rel="noopener noreferrer">
+                        ELAD: Blind Face Restoration using Expectation-based Likelihood Approximation and Diffusion Prior
+                    </a>
+                    </br>
+                    <a href="https://man-sean.github.io/" target="_blank" rel="noopener noreferrer" class="text-muted">Sean Man</a>,
+                    <a href="https://www.guyohayon.com/" target="_blank" class="text-muted">Guy Ohayon</a>,
+                    <a href="https://scholar.google.com/citations?user=kJeQaucAAAAJ&hl=en" target="_blank" class="text-muted">Ron Raphaeli</a>,
+                    <b>Matan Kleiner</b>,
+                    <a href="https://elad.cs.technion.ac.il/" target="_blank" class="text-muted">Michael Elad</a>
+                    </br>
+                    <b>SIGGRAPH Asia 2025</b>
+                </h6>
+
+                <p class="card-text">
+                    We propose a novel approach to blind face restoration using a degradation estimator, expectation-based likelihood approximation, and diffusion prior.
+                </p>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card mb-3 shadow anchor" id="Optical SR">
+        <div class="row g-0 align-items-center">
+        <div class="col-md-4">
+            <div class="project-media rounded-start">
+                <img
+                    src="assets/aosrnn_arch.png"
+                    class="media-image media-image-default"
+                    alt="Optical SR project image"
+                >
+                <img
+                    src="assets/aosrnn_res.png"
+                    class="media-image media-image-hover"
+                    alt="Optical SR project image"
+                >
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card-body">
+
+                <h6 class="card-subtitle mb-2 text-muted">
+                    <a href="https://www.degruyterbrill.com/document/doi/10.1515/nanoph-2025-0294/html" target="_blank" rel="noopener noreferrer">
+                        Can the Success of Digital Super-Resolution Networks Be Transferred to Passive All-Optical Systems?
+                    </a>
+                    </br>
+                    <b>Matan Kleiner</b>,
+                    <a href="https://www.linkedin.com/in/lior-michaeli-62a24862/" target="_blank" rel="noopener noreferrer" class="text-muted">Lior Michaeli</a>,
+                    <a href="https://tomer.net.technion.ac.il/" target="_blank" class="text-muted">Tomer Michaeli</a>
+                    </br>
+                    <b>Nanophotonics 2025</b>
+                     <!-- <a href="https://github.com/matankleiner/All-Optical-SR" target="_blank" rel="noopener noreferrer">Code</a> -->
+                      <a href="https://github.com/matankleiner/All-Optical-SR" target="_blank" rel="noopener noreferrer"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a>
+                    </br>
+                    <span style="color: rgb(255, 123, 0);">Presented as an <i>oral presentation</i> at CLEO 2025</span>
+                </h6>
+                    <p class="card-text">
+                        We find that passive, phase-only, and nonlinear all-optical super-resolution networks face two key challenges: (i) a tradeoff between reconstruction fidelity and 
+                        energy preservation, and (ii) a limited dynamic range of input intensities that can be effectively processed. 
+                    </p>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card mb-3 shadow anchor" id="FlowEdit">
+        <div class="row g-0 align-items-center">
+        <div class="col-md-4">
+            <div class="project-media rounded-start">
+                <img
+                    src="assets/FlowEdit.png"
+                    class="media-image media-image-default"
+                    alt="FlowEdit project image"
+                >
+                <img
+                    src="assets/flowedit_scheme.png"
+                    class="media-image media-image-hover"
+                    alt="FlowEdit project image"
+                >
+
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card-body">
+
+                <h6 class="card-subtitle mb-2 text-muted">
+                    <a href="https://matankleiner.github.io/flowedit/" target="_blank" rel="noopener noreferrer">
+                        FlowEdit: Inversion-Free Text-Based Editing Using Pre-Trained Flow Models
+                    </a>
+                    </br>
+                    <a href="https://www.linkedin.com/in/vladimir-kulikov/" target="_blank" rel="noopener noreferrer" class="text-muted">Vladimir Kulikov</a>,
+                    <b>Matan Kleiner</b>,
+                    <a href="https://inbarhub.github.io/www/" target="_blank" rel="noopener noreferrer" class="text-muted">Inbar Huberman-Spiegelglas</a>,
+                    <a href="https://tomer.net.technion.ac.il/" target="_blank" class="text-muted">Tomer Michaeli</a>
+                    </br>
+                    <b>ICCV 2025</b>
+                    <!-- <a href="https://github.com/fallenshock/FlowEdit" target="_blank" rel="noopener noreferrer">Code</a> -->
+                    <a href="https://github.com/fallenshock/FlowEdit" target="_blank" rel="noopener noreferrer"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a>
+                    </br>
+                    <span style="color: rgb(255, 123, 0);">Best Student Paper Award</span>
+                </h6>
+                    <p class="card-text">
+                        FlowEdit is a text-based editing method for pre-trained T2I flow models, which is inversion-free, optimization-free and 
+                        model agnostic. FlowEdit constructs an ODE that directly maps between the source and target distributions, leading to SOTA results.
+                    </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="card mb-3 shadow anchor" id="Coherence Awareness">
+        <div class="row g-0 align-items-center">
+        <div class="col-md-4">
+            <div class="project-media rounded-start">
+
+                <!-- Video shown by default -->
+                <img
+                    src="assets/coh_awa.png"
+                    class="media-image"
+                    alt="Coherence Awareness image"
+                >
+                <!-- PNG shown on hover -->
+                <video
+                    class="media-video"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                >
+                    <source src="assets/coh_awa.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+            </div>
+        </div>
+
+
+        <div class="col-md-8">
+            <div class="card-body">
+
+                <h6 class="card-subtitle mb-2 text-muted">
+                    <a href="https://onlinelibrary.wiley.com/doi/10.1002/lpor.202401299" target="_blank" rel="noopener noreferrer">
+                        Coherence Awareness in Diffractive Neural Networks
+                    </a>
+                    </br>
+                    <b>Matan Kleiner</b>,
+                    <a href="https://www.linkedin.com/in/lior-michaeli-62a24862/" target="_blank" rel="noopener noreferrer" class="text-muted">Lior Michaeli</a>,
+                    <a href="https://tomer.net.technion.ac.il/" target="_blank" class="text-muted">Tomer Michaeli</a>
+                    </br>
+                    <b>Laser & Photonics Reviews 2025</b>
+                     <!-- <a href="https://github.com/matankleiner/Coherence-Awareness-in-Diffractive-Neural-Networks" target="_blank" rel="noopener noreferrer">Code</a> -->
+                      <a href="https://github.com/matankleiner/Coherence-Awareness-in-Diffractive-Neural-Networks" target="_blank" rel="noopener noreferrer"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a>
+                    </br>
+                    <span style="color: rgb(255, 123, 0);">Presented as an <i>oral presentation</i> at CLEO 2024</span>
+                </h6>
+                    <p class="card-text">
+                        We illustrate that, as opposed to imaging systems, the degree of spatial coherence has a dramatic effect in diffractive networks. 
                         Following this observation, we propose a general framework for training diffractive networks for any specified degree of spatial and temporal coherence. 
-                        Our findings serve as a steppingstone toward adopting all-optical neural networks in real-world applications, leveraging nothing but natural light. 
-                        </br>
-                        <span style="color: rgb(255, 123, 0);">Presented as an <i>oral presentation</i> at CLEO 2024.</span>
                     </p>
-                </div>
-                <div class="row">
-                    <img src="assets/CohAware.png" class="card-img-bottom" style="padding-left: 7rem; padding-right: 7rem; padding-bottom: 1rem;" alt="">
-                </div>
-            </div>
 
-
-            
-            <div class="card mb-3 shadow anchor" id="Slicedit">
-                <div class="card-body">
-                    <div class="row open-sans-300">
-                        <div class="col"><h5 class="card-title">Slicedit: Zero-Shot Video Editing With Text-to-Image Diffusion Models Using Spatio-Temporal Slices</h5></div>
-                        <div class="col-auto">
-                            <a href="https://matankleiner.github.io/slicedit/" target="_blank" rel="noopener noreferrer"><i class="fa fa-external-link fa-lg" aria-hidden="true"></i></a>
-                            &nbsp;
-                            <a href="https://github.com/fallenshock/Slicedit" target="_blank" rel="noopener noreferrer"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a>
-                            &nbsp;
-                            <span class="badge bg-primary">ICML 2024</span>
-                        </div>
                     </div>
-                        <h6 class="card-subtitle mb-2 text-muted">
-                        <a href="https://www.linkedin.com/in/nathaniel-cohen-6032b7235/" target="_blank" rel="noopener noreferrer" class="text-muted">Nathaniel Cohen<sup>*</sup></a>,
-                        <a href="https://www.linkedin.com/in/vladimir-kulikov/" target="_blank" rel="noopener noreferrer" class="text-muted">Vladimir Kulikov<sup>*</sup></a>,
-                        <b>Matan Kleiner<sup>*</sup></b>,
-                        <a href="https://inbarhub.github.io/www/" target="_blank" rel="noopener noreferrer" class="text-muted">Inbar Huberman-Spiegelglas</a>,
-                        <a href="https://tomer.net.technion.ac.il/" target="_blank" class="text-muted">Tomer Michaeli</a></h6>
-                                      
-                    <p class="card-text">
-                        We present Slicedit, a method for text-based video editing that utilizes a pre-trained T2I diffusion model and spatiotemporal slices. 
-                        Spatiotemporal slices of natural videos exhibit similar characteristics to natural images. Therefore, the same T2I diffusion model
-                        that is normally used only as a prior on video frames can also serve as a strong prior for enhancing temporal consistency by applying 
-                        it on spatiotemporal slices. 
-                        Slicedit generates videos that retain the structure and motion of the original video while adhering to the 
-                        target text. It edit a wide range of real-world videos, including videos with strong nonrigid motion and occlusions.
-                        </br>
-                        <span style="color: rgb(255, 123, 0);">Presented as an <i>oral presentation</i> at the CVG workshop @ ICML 2024.</span>
-                    </p>
                 </div>
-                <div class="row">
-                    <img src="assets/Slicedit.png" class="card-img-bottom" style="padding-left: 7rem; padding-right: 7rem;" alt="">
-                </div>
-            </div>
 
-            <div class="card mb-3 shadow anchor" id="SinDDM">
-                <div class="card-body">
-                    <div class="row open-sans-300">
-                        <div class="col"><h5 class="card-title">SinDDM: A Single Image Denoising Diffusion Model</h5></div>
-                        <div class="col-auto">
-                            <a href="https://matankleiner.github.io/sinddm/" target="_blank" rel="noopener noreferrer"><i class="fa fa-external-link fa-lg" aria-hidden="true"></i></a>
-                            &nbsp;
-                            <a href="https://github.com/fallenshock/SinDDM" target="_blank" rel="noopener noreferrer"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a>
-                            &nbsp;
-                            <span class="badge bg-primary">ICML 2023</span>
-                        </div>
-                    </div>
-                        <h6 class="card-subtitle mb-2 text-muted">
-                        <a href="https://www.linkedin.com/in/vladimir-kulikov/" target="_blank" rel="noopener noreferrer" class="text-muted">Vladimir Kulikov</a>,
-                        <a href="https://www.linkedin.com/in/shahar-yadin-069725195/" target="_blank" rel="noopener noreferrer" class="text-muted">Shahar Yadin<sup>*</sup></a>,
-                        <b>Matan Kleiner<sup>*</sup></b>,
-                        <a href="https://tomer.net.technion.ac.il/" target="_blank" class="text-muted">Tomer Michaeli</a></h6>
-                                      
-                    <p class="card-text">
-                        We introduce a framework for training a DDM on a single image, which we coin SinDDM.
-                        SinDDM learns the internal statistics of the training image by using a multi-scale diffusion process and generate samples of arbitrary dimensions, 
-                        in a coarse-to-fine manner. 
-                        SinDDM generates diverse high-quality samples and it can be easily guided by external supervision, such as CLIP model.
-                    </p>
-                </div>
-                <div class="row">
-                    <img src="assets/sinddm.svg" class="card-img-bottom" style="padding-left: 7rem; padding-right: 7rem; padding-bottom: 1rem;" alt="">
-                </div>
             </div>
+        </div>
+
+
+        <div class="card mb-3 shadow anchor" id="Slicedit">
+        <div class="row g-0 align-items-center">
+
+
+        <div class="col-md-4">
+            <div class="project-media rounded-start">
+
+                <!-- Video shown by default -->
+                <video
+                    class="media-video"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                >
+                    <source src="assets/slicedit.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+                <!-- PNG shown on hover -->
+                <img
+                    src="assets/spatiotemporal.png"
+                    class="media-image"
+                    alt="Slicedit project image"
+                >
+
+            </div>
+        </div>
+
+
+
+        <div class="col-md-8">
+            <div class="card-body">
+
+                <h6 class="card-subtitle mb-2 text-muted">
+                    <a href="https://matankleiner.github.io/slicedit/" target="_blank" rel="noopener noreferrer">
+                        Slicedit: Zero-Shot Video Editing With Text-to-Image Diffusion Models Using Spatio-Temporal Slices
+                    </a>
+                    </br>
+                    <a href="https://www.linkedin.com/in/nathaniel-cohen-6032b7235/" target="_blank" rel="noopener noreferrer" class="text-muted">Nathaniel Cohen<sup>*</sup></a>,
+                    <a href="https://www.linkedin.com/in/vladimir-kulikov/" target="_blank" rel="noopener noreferrer" class="text-muted">Vladimir Kulikov<sup>*</sup></a>,
+                    <b>Matan Kleiner<sup>*</sup></b>,
+                    <a href="https://inbarhub.github.io/www/" target="_blank" rel="noopener noreferrer" class="text-muted">Inbar Huberman-Spiegelglas</a>,
+                    <a href="https://tomer.net.technion.ac.il/" target="_blank" class="text-muted">Tomer Michaeli</a>
+                    </br>
+                    <b>ICML 2024</b>
+                    <a href="https://github.com/fallenshock/slicedit" target="_blank" rel="noopener noreferrer"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a>
+                    </br>
+                    <span style="color: rgb(255, 123, 0);">Presented as an <i>oral presentation</i> at the CVG workshop @ ICML 2024</span>
+                </h6>
+                    <p class="card-text">
+                        Slicedit is a method for text-based video editing that utilizes a pre-trained T2I diffusion model and spatiotemporal slices. 
+                    </p>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="card mb-3 shadow anchor" id="SinDDM">
+        <div class="row g-0 align-items-center">
+        <div class="col-md-4">
+            <div class="project-media rounded-start">
+                <img
+                    src="assets/sinddm.gif"
+                    alt="SinDDM project image"
+                >
+            </div>
+        </div>
+
+
+        <div class="col-md-8">
+            <div class="card-body">
+
+                <h6 class="card-subtitle mb-2 text-muted">
+                    <a href="https://matankleiner.github.io/sinddm/" target="_blank" rel="noopener noreferrer">
+                        SinDDM: A Single Image Denoising Diffusion Model
+                    </a>
+                    </br>
+                    <a href="https://www.linkedin.com/in/vladimir-kulikov/" target="_blank" rel="noopener noreferrer" class="text-muted">Vladimir Kulikov</a>,
+                    <a href="https://www.linkedin.com/in/shahar-yadin-069725195/" target="_blank" rel="noopener noreferrer" class="text-muted">Shahar Yadin<sup>*</sup></a>,
+                    <b>Matan Kleiner<sup>*</sup></b>,
+                    <a href="https://tomer.net.technion.ac.il/" target="_blank" class="text-muted">Tomer Michaeli</a>
+                    </br>
+                    <b>ICML 2023</b>
+                    <a href="https://github.com/fallenshock/SinDDM" target="_blank" rel="noopener noreferrer"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a>
+                    <!-- <a href="https://github.com/fallenshock/SinDDM" target="_blank" rel="noopener noreferrer">Code</a> -->
+                </h6>
+                    <p class="card-text">
+                        SinDDM is a framework for training a diffusion model on a single image.
+                        SinDDM learns the internal statistics of the training image by using a multi-scale diffusion process, generates diverse high-quality samples, and it can be easily guided by external supervision, such as CLIP model.
+                    </p>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
 
         </div>
     </div>
